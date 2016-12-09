@@ -1,0 +1,17 @@
+{
+  "name": "kantor",
+  "authors": [
+    "Bartek <bartlomiej.biel@labnoratory.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
