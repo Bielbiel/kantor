@@ -1,37 +1,25 @@
-$(function ()
+$(document).ready(function ()
 {
     'use strict';
-    $('#zmien').on('click', function ()
+    $(function ()
     {
-        var name = prompt('Wpisz stan poczatkowy:');
-        name = parseInt(name, 10);
-        localStorage.setItem('pln', name);
-        var pln = localStorage.getItem('pln');
-        $('#pln').html(pln);
-
+        $('#but1').on('click', function ()
+        {
+            var name = document.getElementById('zmien');
+            localStorage.setItem('pln', name.value);
+            var pln = localStorage.getItem('pln');
+            $('#pln').html(pln);
+        });
     });
 });
 
-$(function ()
-{
-    'use strict';
-    $('#value').on('click', function ()
-    {
-
-
-    });
-});
-
-// waluta pobierana
 
 $(document).ready(function ()
 {
+// waluta pobierana
     $(function ()
     {
-
-
         $.ajax({
-
             type: 'GET', url: 'http://api.nbp.pl/api/exchangerates/rates/c/usd/today/?format=json', success: function (data)
             {
                 console.log('success', data);
@@ -39,22 +27,40 @@ $(document).ready(function ()
                 $('#plnToUsd').val(plnToUsd);
                 usdToPln = data.rates[0].bid;
                 $('#usdToPln').val(usdToPln);
-                var variablevalue  = data.rates[0].ask;
             }
-
         });
 
         $('#pln1').on('keyup', function ()
         {
-
-            var pln = +$(this).val();
-            $('#total').text((pln * plnToUsd).toFixed(2));
+            var plnn = +$(this).val();
+            $('#total').text((plnn * plnToUsd).toFixed(2));
             $('#pln11-count').text($(this).val());
-        });
 
+            var math = document.getElementById('pln1');
+            localStorage.setItem('pln11', math.value * plnToUsd);
+            var pln11 = localStorage.getItem('pln11');
+
+        });
     });
 });
 
+$(function ()
+{
+    'use strict';
+    $('#save').on('click', function ()
+    {
+
+
+        var startPln = localStorage.getItem('pln');
+        var money = localStorage.getItem('pln11');
+
+        if (money <= startPln) {
+            alert('Jest ok');
+        }else {
+            alert('za malo pieniedzy');
+        }
+    });
+});
 
 
 
