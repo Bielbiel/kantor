@@ -22,7 +22,6 @@ $(document).ready(function ()
         $.ajax({
             type: 'GET', url: 'http://api.nbp.pl/api/exchangerates/rates/c/usd/today/?format=json', success: function (data)
             {
-                console.log('success', data);
                 plnToUsd = data.rates[0].ask;
                 $('#plnToUsd').val(plnToUsd);
                 usdToPln = data.rates[0].bid;
@@ -49,12 +48,10 @@ $(function ()
     'use strict';
     $('#save').on('click', function ()
     {
-
-
         var startPln = localStorage.getItem('pln');
         var money = localStorage.getItem('pln11');
 
-        if (money <= startPln) {
+        if (Math.round(money * 100) <= Math.round(startPln * 100)){
             alert('Jest ok');
         }else {
             alert('za malo pieniedzy');
