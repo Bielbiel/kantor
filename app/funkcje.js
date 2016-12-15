@@ -1,20 +1,25 @@
 $(function ()
 {
     'use strict';
-    $(function ()
+    var pln = localStorage.getItem('pln');
+    $('#pln').html(pln);
+
+
+    $(function ()lStorage	4
     {
-        $('#but1').on('click', function ()
+        $('#buttonStartMoney').on('click', function ()
         {
-            var name = document.getElementById('zmien');
-            localStorage.setItem('pln', name.value);
-            var pln = localStorage.getItem('pln');
-            $('#pln').html(pln);
+
+            var moneyInPut = document.getElementById('inputStartMoney');
+            localStorage.setItem('pln', moneyInPut.value);
+            $('#pln').html(moneyInPut.value);
+
+
         });
     });
 });
 
 
-// waluta pobierana
 $(function ()
 {
     $.ajax({
@@ -31,31 +36,37 @@ $(function ()
     {
         var plnn = +$(this).val();
         $('#total').text((plnn * plnToUsd).toFixed(2));
-        $('#pln11-count').text($(this).val());
+        $('#valueEntered').text($(this).val());
+
 
         var math = document.getElementById('pln1');
-        localStorage.setItem('pln11', math.value * plnToUsd);
-        var pln11 = localStorage.getItem('pln11');
-
+        localStorage.setItem('valueEntered', math.value * plnToUsd);
+        localStorage.setItem('valueEntered', math.value);
+        var valueEntered = localStorage.getItem('valueEntered');
     });
-});
 
 
-$(function ()
-{
-    'use strict';
     $('#save').on('click', function ()
     {
         var startPln = localStorage.getItem('pln');
-        var money = localStorage.getItem('pln11');
-
+        var money = localStorage.getItem('valueEntered');
         if (Math.round(money * 100) <= Math.round(startPln * 100)) {
-            alert('Jest ok');
+
+            localStorage.setItem('pln', startPln - money);
+            var pln = localStorage.getItem('pln');
+            $('#pln').html(pln);
+            var usd = localStorage.getItem('valueEntered' + '#usd');
+            $('#usd').html(usd);
+
+
         } else {
-            alert('za malo pieniedzy');
+            alert('Za malo pieniedzy');
         }
     });
 });
+
+
+
 
 
 

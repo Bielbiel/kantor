@@ -15,9 +15,9 @@
     <div class="panel panel-default">
         <div class="panel-heading"><h2>Trener Ciekciarza</h2>
 
-            <button id="but1">Zatwierdz nowa kwote PLN</button>
+            <button id="buttonStartMoney">Zatwierdz nowa kwote PLN</button>
 
-            <input type="number" id="zmien" value="0">
+            <input type="number" id="inputStartMoney" value="0">
         </div>
 
     </div>
@@ -49,25 +49,25 @@
                         <td>
                             EUR
                         </td>
-                        <td></td>
+                        <td><span class="label label-success" id="eur"></span></td>
                     </tr>
                     <tr>
                         <td>
                             CHF
                         </td>
-                        <td></td>
+                        <td><span class="label label-success" id="chf"></span></td>
                     </tr>
                     <tr>
                         <td>
                             USD
                         </td>
-                        <td></td>
+                        <td><span class="label label-success" id="usd"></span></td>
                     </tr>
                     <tr>
                         <td>
                             GBP
                         </td>
-                        <td></td>
+                        <td><span class="label label-success" id="gbp"></span></td>
                     </tr>
                 </table>
             </div>
@@ -83,7 +83,7 @@
                 <div class="row">
                     <div>
                         <div><input type="hidden" name="_method" value="POST"/></div>
-                        <div class="form-group"><label for="transaction-type">Chcę wymienic</label><select name="transaction_type" class="form-control"
+                        <div class="form-group"><label for="transaction-type">Chcę kupic</label><select name="transaction_type" class="form-control"
                                                                                                            id="transaction-type">
                             <option value="1">USD</option>
                             <option value="2">EUR</option>
@@ -104,7 +104,7 @@
 
                     <div class="input-group body-calc1">
 
-                        <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="total">0</span> PLN</p>
+                        <p>Za <span id="valueEntered">0</span> Trzeba zapłacić <span id="total">0</span> PLN</p>
 
                         <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
                     </div><!-- /input-group -->
@@ -113,7 +113,7 @@
         </div><!-- /.col-lg-6 -->
     </div>
 </div>
-
+<script src="dowlondWalute.js"></script>
 <script type="text/javascript" src="https://cinkciarz.pl/widget/cinkciarz.widget.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="funkcje.js"></script>
