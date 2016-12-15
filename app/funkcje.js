@@ -1,4 +1,4 @@
-$(document).ready(function ()
+$(function ()
 {
     'use strict';
     $(function ()
@@ -14,34 +14,32 @@ $(document).ready(function ()
 });
 
 
-$(document).ready(function ()
-{
 // waluta pobierana
-    $(function ()
-    {
-        $.ajax({
-            type: 'GET', url: 'http://api.nbp.pl/api/exchangerates/rates/c/usd/today/?format=json', success: function (data)
-            {
-                plnToUsd = data.rates[0].ask;
-                $('#plnToUsd').val(plnToUsd);
-                usdToPln = data.rates[0].bid;
-                $('#usdToPln').val(usdToPln);
-            }
-        });
-
-        $('#pln1').on('keyup', function ()
+$(function ()
+{
+    $.ajax({
+        type: 'GET', url: 'http://api.nbp.pl/api/exchangerates/rates/c/usd/today/?format=json', success: function (data)
         {
-            var plnn = +$(this).val();
-            $('#total').text((plnn * plnToUsd).toFixed(2));
-            $('#pln11-count').text($(this).val());
+            plnToUsd = data.rates[0].ask;
+            $('#plnToUsd').val(plnToUsd);
+            usdToPln = data.rates[0].bid;
+            $('#usdToPln').val(usdToPln);
+        }
+    });
 
-            var math = document.getElementById('pln1');
-            localStorage.setItem('pln11', math.value * plnToUsd);
-            var pln11 = localStorage.getItem('pln11');
+    $('#pln1').on('keyup', function ()
+    {
+        var plnn = +$(this).val();
+        $('#total').text((plnn * plnToUsd).toFixed(2));
+        $('#pln11-count').text($(this).val());
 
-        });
+        var math = document.getElementById('pln1');
+        localStorage.setItem('pln11', math.value * plnToUsd);
+        var pln11 = localStorage.getItem('pln11');
+
     });
 });
+
 
 $(function ()
 {
@@ -51,9 +49,9 @@ $(function ()
         var startPln = localStorage.getItem('pln');
         var money = localStorage.getItem('pln11');
 
-        if (Math.round(money * 100) <= Math.round(startPln * 100)){
+        if (Math.round(money * 100) <= Math.round(startPln * 100)) {
             alert('Jest ok');
-        }else {
+        } else {
             alert('za malo pieniedzy');
         }
     });
