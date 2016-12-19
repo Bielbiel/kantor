@@ -75,28 +75,28 @@
     </div>
     <div class="row"></div>
 
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading"><h2>Wymiana Walut</h2></div>
+            <div class="panel-heading"><h2>Kupno</h2></div>
             <div class="panel-body body-calc">
 
                 <div class="row">
                     <div>
                         <div><input type="hidden" name="_method" value="POST"/></div>
-                        <div class="form-group"><label for="transaction-type">Chcę kupic</label><select name="transaction_type" class="form-control"
-                                                                                                           id="transaction-type">
-                            <option value="1">USD</option>
-                            <option value="2">EUR</option>
-                            <option value="3">CHF</option>
-                            <option value="4">GBP</option>
-                        </select></div>
+                        <div class="form-group"><label>Chcę kupic</label>
+                            <select name="transaction_type" class="form-control" id="selectForBay">
+                                <option value="1">USD</option>
+                                <option value="2">EUR</option>
+                                <option value="3">CHF</option>
+                                <option value="4">GBP</option>
+                            </select></div>
                     </div>
 
                     <div class="input-group body-calc1">
 
                         <div class="tour">
                             <p>
-                                <input type="number" id="pln1" value="0">
+                                <input type="number" id="moneyInInput" value="0">
                             </p>
                         </div>
 
@@ -104,7 +104,7 @@
 
                     <div class="input-group body-calc1">
 
-                        <p>Za <span id="valueEntered">0</span> Trzeba zapłacić <span id="total">0</span> PLN</p>
+                        <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="newWaluteForBuy">0</span> PLN</p>
 
                         <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
                     </div><!-- /input-group -->
@@ -112,10 +112,50 @@
             </div>
         </div><!-- /.col-lg-6 -->
     </div>
+
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>Sprzedaz</h2></div>
+            <div class="panel-body body-calc">
+
+                <div class="row">
+                    <div>
+                        <div><input type="hidden" name="_method" value="POST"/></div>
+                        <div class="form-group"><label>Chcę sprzedac</label>
+                            <select class="form-control" id="selectForSell">
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="CHF">CHF</option>
+                                <option value="GBP">GBP</option>
+                            </select></div>
+                    </div>
+
+                    <div class="input-group body-calc1">
+
+                        <div class="tour">
+                            <p>
+                                <input type="number" id="labelInSell" value="0">
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group body-calc1">
+
+                        <p>Za <span id="plnViewInSell">0</span> Otrzymasz <span id="sprzedaz">0</span> PLN</p>
+
+                        <button class="btn btn-default" type="button" id="savee">Zatwierdz</button>
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div><!-- /.col-lg-6 -->
+    </div>
 </div>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="dowlondWalute.js"></script>
 <script type="text/javascript" src="https://cinkciarz.pl/widget/cinkciarz.widget.js"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="funkcje.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
