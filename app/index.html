@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trner</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div class="container col-md-pull-12">
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h2>Trener Ciekciarza</h2>
+
+            <button id="but1">Zatwierdz nowa kwote PLN</button>
+
+            <input type="number" id="zmien" value="0">
+        </div>
+
+    </div>
+
+    <div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">Aktualny kurs walut</div>
+            <div class="panel-body">
+
+                <div id="cinkciarzPlWidget">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Stan srodkow</div>
+            <div class="panel-body woll">
+                <table>
+                    <tr>
+                        <td>
+                            PLN
+                        </td>
+                        <td><span class="label label-success" id="pln"></span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            EUR
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CHF
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            USD
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            GBP
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>Wymiana Walut</h2></div>
+            <div class="panel-body body-calc">
+
+                <div class="row">
+                    <div>
+                        <div><input type="hidden" name="_method" value="POST"/></div>
+                        <div class="form-group"><label for="transaction-type">Chcę wymienic</label><select name="transaction_type" class="form-control"
+                                                                                                           id="transaction-type">
+                            <option value="1">USD</option>
+                            <option value="2">EUR</option>
+                            <option value="3">CHF</option>
+                            <option value="4">GBP</option>
+                        </select></div>
+                    </div>
+
+                    <div class="input-group body-calc1">
+
+                        <div class="tour">
+                            <p>
+                                <input type="number" id="pln1" value="0">
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group body-calc1">
+
+                        <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="total">0</span> PLN</p>
+
+                        <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div><!-- /.col-lg-6 -->
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cinkciarz.pl/widget/cinkciarz.widget.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="funkcje.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
