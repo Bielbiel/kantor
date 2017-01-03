@@ -8,7 +8,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="cienkciarz">
-<div class="container"><div ng-view></div></div>
+<div class="container">
+    <div ng-view></div>
+
+</div>
+
+<div ng-controller="AppCtrl" ng-cloak="" class="inputdemoErrorsAdvanced" ng-app="MyApp">
+    <form name="userForm">
+        <label>Podaj kwote Startowa</label>
+        <input name="social" ng-model="user.social" ng-pattern="/[0-9]$/">
+        <div class="hint"></div>
+   </form>
+</div>
+
 <!--<div class="container">-->
     <!--<div class="col-md-12">-->
         <!--<div class="panel panel-default">-->
@@ -160,7 +172,6 @@
 <script src="controllers/mainCtrl.js"></script>
 
 <script type="text/javascript" src="https://cinkciarz.pl/widget/cinkciarz.widget.js"></script>
-<script type="text/javascript" src="funkcje.js"></script>
 
 </body>
 </html>
