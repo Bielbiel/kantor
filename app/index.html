@@ -1,159 +1,24 @@
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trner</title>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Kantor</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-app="cinkciarz">
 
-<div class="container">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="col-md-offset-4">
-                    <h2 class="nav-start">Trener Ciekciarza</h2>
-                    <input type="number" id="inputStartMoney" value="0">
-                    <button id="buttonStartMoney">Zatwierdz nowa kwote PLN</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Aktualny kurs walut</div>
-            <div class="panel-body">
-                <div id="cinkciarzPlWidget"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Stan srodkow</div>
-            <div class="panel-body woll">
-                <table>
-                    <tr>
-                        <td>
-                            PLN
-                        </td>
-                        <td><span class="label label-success" id="pln"></span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            EUR
-                        </td>
-                        <td><span class="label label-success" id="eur"></span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            CHF
-                        </td>
-                        <td><span class="label label-success" id="chf"></span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            USD
-                        </td>
-                        <td><span class="label label-success" id="usd"></span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            GBP
-                        </td>
-                        <td><span class="label label-success" id="gbp"></span></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="row"></div>
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h2>Kupno</h2></div>
-            <div class="panel-body body-calc">
-                <div class="row">
-                    <div>
-                        <div><input type="hidden" name="_method" value="POST"/></div>
-                        <div class="form-group"><label>Chcę kupic</label>
-                            <select name="transaction_type" class="form-control" id="selectForBay">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="CHF">CHF</option>
-                                <option value="GBP">GBP</option>
-                            </select></div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <span class="badge" id="newValueForBuy">0</span>
-                    </div>
-
-                    <div class="input-group col-md-6 col-md-offset-3">
-                        <div class="tour">
-                            <p>
-                                <input type="number" id="moneyInInput" value="0">
-                            </p>
-                        </div>
-
-
-                        <div class="input-group body-calc1">
-                            <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="newWaluteForBuy">0</span> PLN</p>
-                            <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
-                        </div><!-- /input-group -->
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.col-lg-6 -->
-    </div>
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h2>Sprzedaz</h2></div>
-            <div class="panel-body body-calc">
-                <div class="row">
-                    <div>
-                        <div><input type="hidden" name="_method" value="POST"/></div>
-                        <div class="form-group"><label>Chcę sprzedac</label>
-                            <select class="form-control" id="selectForSell">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="CHF">CHF</option>
-                                <option value="GBP">GBP</option>
-                            </select></div>
-                    </div>
-
-                    <div class="col-md-3">
-                       <span class="badge" id="oldValuteForSell">0</span>
-                    </div>
-
-                    <div class="input-group body-calc1 col-md-6">
-                        <div class="tour">
-                            <p>
-                                <input type="number" id="labelInSell" value="0">
-                            </p>
-                        </div>
-
-
-                        <div class="input-group body-calc1">
-                            <p>Za <span id="plnViewInSell">0</span> Otrzymasz <span id="oldWaluteForBay">0</span> PLN</p>
-                            <button class="btn btn-default" type="button" id="saveInSell">Zatwierdz</button>
-                        </div><!-- /input-group -->
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.col-lg-6 -->
-    </div>
-</div>
+<ng-view>
+</ng-view>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="https://cinkciarz.pl/widget/cinkciarz.widget.js"></script>
-<script type="text/javascript" src="funkcje.js"></script>
+<script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="app.config.js"></script>
+<script src="controllers/mainCtrl.js"></script>
+<script type="text/javascript" src="https://cinkciarz.pl/widget/cinkciarz.widget.js"></script>
 </body>
 </html>
 
