@@ -1,7 +1,7 @@
 (function ()
 {
     'use strict';
-    angular.module('cienkciarz')
+    angular.module('cinkciarz')
             .controller('MainController', MainController);
 
 

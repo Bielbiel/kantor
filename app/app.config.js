@@ -1,6 +1,6 @@
 (function ()
 {
-    angular.module('cienkciarz')
+    angular.module('cinkciarz')
             .config(function ($routeProvider)
             {
                 $routeProvider
