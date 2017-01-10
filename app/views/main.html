@@ -3,8 +3,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="col-md-offset-4">
-                    <h2 class="nav-start">Trener Ciekciarza</h2>
-                    <input type="number" id="inputStartMoney" value="0">
+                    <h2 class="nav-start">{{mainCtrl.message}}</h2>
+                    <input type="number" ng-model="amount" aria-label="amount">
                     <button id="buttonStartMoney">Zatwierdz nowa kwote PLN</button>
 
                 </div>
@@ -32,7 +32,9 @@
                         <td>
                             PLN
                         </td>
-                        <td><span class="label label-success" id="pln"></span></td>
+                        <td>
+                            <span id="pln">{{amount | currency}}</span>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -50,7 +52,7 @@
                         <td>
                             USD
                         </td>
-                        <td><span class="label label-success" id="usd"></span></td>
+                        <td><span class="label label-success" id="usd">{{mainCtrl.dolar.rates[0].bid}}</span></td>
                     </tr>
                     <tr>
                         <td>
@@ -72,19 +74,18 @@
             <div class="panel-heading"><h2>Kupno</h2></div>
             <div class="panel-body body-calc">
                 <div class="row">
+
                     <div>
-                        <div><input type="hidden" name="_method" value="POST"/></div>
-                        <div class="form-group"><label>Chcę kupic</label>
-                            <select name="transaction_type" class="form-control" id="selectForBay">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="CHF">CHF</option>
-                                <option value="GBP">GBP</option>
-                            </select></div>
+                        <form name="myForm">
+                            <label for="repeatSelect"> Repeat select: </label>
+                            <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="mainCtrl.data.model">
+                                <option ng-repeat="option in mainCtrl.data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </form>
                     </div>
 
                     <div class="col-md-3">
-                        <span class="badge" id="newValueForBuy">0</span>
+                        <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}}</span>
                     </div>
 
                     <div class="input-group col-md-6 col-md-offset-3">
