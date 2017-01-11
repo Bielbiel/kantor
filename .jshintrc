@@ -36,6 +36,7 @@
     "beforeEach": true,
     "before": true,
     "it": true,
-    "expect": true
+    "expect": true,
+    "angular":true
   }
 }
