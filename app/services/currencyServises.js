@@ -1,8 +1,6 @@
-(function (angular)
+(function ()
 {
-    "use strict";
-    angular.module('cinkciarz')
-            .service('CurrencyService', CurrencyService);
+    'use strict';
 
     function CurrencyService($http)
     {
@@ -12,14 +10,28 @@
                 return $http.get('https://api.nbp.pl/api/exchangerates/rates/c/' + currency + '/today/?format=json')
                         .then(function (data)
                         {
-                           return data.data;
+                            return data.data;
                         }).catch(function (err)
                         {
                             console.log(err);
                         });
+            },
+
+            allCurrencies: function ()
+            {
+                return $http.get('https://api.nbp.pl/api/exchangerates/tables/c/?format=json')
+                        .then(function (response)
+                        {
+                            return response.data;
+                        });
             }
+
         };
 
     }
 
-})(angular);
+    angular.module('cinkciarz')
+            .service('CurrencyService', CurrencyService);
+
+
+})();

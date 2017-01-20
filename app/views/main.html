@@ -4,140 +4,99 @@
             <div class="panel-heading">
                 <div class="col-md-offset-4">
                     <h2 class="nav-start">{{mainCtrl.message}}</h2>
-                    <input type="number" ng-model="amount" aria-label="amount">
-                    <button id="buttonStartMoney">Zatwierdz nowa kwote PLN</button>
-
+                    <input type="number" ng-model="mainCtrl.amount" aria-label="amount">
+                    <button ng-click="mainCtrl.wallet.pln">Nowa kwota startowa</button>
+                    <button ng-click="mainCtrl.wallet.$reset({})">Clear localStorage</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Aktualny kurs walut</div>
+            <div class="panel-heading"><h2>Aktualny kurs walut i stan srodkow</h2></div>
             <div class="panel-body">
-                <div id="cinkciarzPlWidget"></div>
-            </div>
-        </div>
-    </div>
 
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Stan srodkow</div>
-            <div class="panel-body woll">
                 <table>
                     <tr>
-                        <td>
-                            PLN
-                        </td>
-                        <td>
-                            <span id="pln">{{amount | currency}}</span>
-                        </td>
+                        <th>
+                            Waluta
+                        </th>
+                        <th>
+                            Kupno
+                        </th>
+                        <th>Sprzedaz</th>
+                        <th class="oneLine">Posiadana Kwota</th>
                     </tr>
                     <tr>
-                        <td>
-                            EUR
-                        </td>
-                        <td><span class="label label-success" id="eur"></span></td>
+                        <th>PLN</th>
+                        <th></th>
+                        <th></th>
+                        <th>{{mainCtrl.wallet.pln}}</th>
                     </tr>
-                    <tr>
-                        <td>
-                            CHF
-                        </td>
-                        <td><span class="label label-success" id="chf"></span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            USD
-                        </td>
-                        <td><span class="label label-success" id="usd">{{mainCtrl.dolar.rates[0].bid}}</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            GBP
-                        </td>
-                        <td><span class="label label-success" id="gbp"></span></td>
+                    <tr ng-repeat="currency in mainCtrl.arrayCurrency">
+                        <th>{{currency.code}}</th>
+                        <th>{{currency.ask}}</th>
+                        <th>{{currency.bid}}</th>
+                        <th class="oneLine">--</th>
                     </tr>
                 </table>
+
+
             </div>
         </div>
     </div>
-
 
     <div class="row"></div>
 
-
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><h2>Kupno</h2></div>
+            <div class="panel-heading"><h2>Wymiana Walut</h2>
+            </div>
             <div class="panel-body body-calc">
                 <div class="row">
-
                     <div>
                         <form name="myForm">
-                            <label for="repeatSelect"> Repeat select: </label>
-                            <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="mainCtrl.data.model">
-                                <option ng-repeat="option in mainCtrl.data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                            <label> Wybierz walute:</label>
+                            <select class="form-control" ng-model="mainCtrl.data.model" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)">
+                                <option ng-repeat="option in mainCtrl.data.availableOptions" value="{{option.name}}">{{option.name}}</option>
                             </select>
                         </form>
                     </div>
 
-                    <div class="col-md-3">
-                        <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}}</span>
-                    </div>
-
-                    <div class="input-group col-md-6 col-md-offset-3">
-                        <div class="tour">
-                            <p>
-                                <input type="number" id="moneyInInput" value="0">
-                            </p>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money.rates[0].ask}}</span>
                         </div>
-
-
-                        <div class="input-group body-calc1">
-                            <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="newWaluteForBuy">0</span> PLN</p>
-                            <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
+                        <div class="input-group col-md-6 col-md-offset-3">
+                            <h2>Kup</h2>
+                            <div class="tour">
+                                <p>
+                                    <input type="number" id="moneyInInput" value="0">
+                                </p>
+                            </div>
+                            <div class="input-group body-calc1">
+                                <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="newWaluteForBuy">0</span> PLN</p>
+                                <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h2>Sprzedaz</h2></div>
-            <div class="panel-body body-calc">
-                <div class="row">
-                    <div>
-                        <div><input type="hidden" name="_method" value="POST"/></div>
-                        <div class="form-group"><label>Chcę sprzedac</label>
-                            <select class="form-control" id="selectForSell">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="CHF">CHF</option>
-                                <option value="GBP">GBP</option>
-                            </select></div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <span class="badge" id="oldValuteForSell">0</span>
-                    </div>
-
-                    <div class="input-group body-calc1 col-md-6">
-                        <div class="tour">
-                            <p>
-                                <input type="number" id="labelInSell" value="0">
-                            </p>
+                    <div class="col-md-6">
+                        <div>
+                            <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.money.rates[0].bid}}</span>
                         </div>
-
-
-                        <div class="input-group body-calc1">
-                            <p>Za <span id="plnViewInSell">0</span> Otrzymasz <span id="oldWaluteForBay">0</span> PLN</p>
-                            <button class="btn btn-default" type="button" id="saveInSell">Zatwierdz</button>
+                        <div class="input-group body-calc1 col-md-6">
+                            <h2>Sprzedaj</h2>
+                            <div class="tour">
+                                <p>
+                                    <input type="number" id="labelInSell" value="0">
+                                </p>
+                            </div>
+                            <div class="input-group body-calc1">
+                                <p>Za <span id="plnViewInSell">0</span> Otrzymasz <span id="oldWaluteForBay">0</span> PLN</p>
+                                <button class="btn btn-default" type="button" id="saveInSell">Zatwierdz</button>
+                            </div>
                         </div>
                     </div>
                 </div>
