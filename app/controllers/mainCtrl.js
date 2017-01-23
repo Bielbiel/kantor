@@ -29,12 +29,12 @@
 
         ctrl.amount = 0;
 
-        ctrl.allCurrencies = function (value)
+        ctrl.Currencies = function (value)
         {
             CurrencyService.getCurrency(value).then(function (data)
             {
                 ctrl[value] = data;
-                console.log(data);
+
             });
 
         };
