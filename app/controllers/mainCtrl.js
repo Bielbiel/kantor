@@ -53,7 +53,6 @@
 
 
         ctrl.wallet = Wallet.getWallet();
-        console.log(ctrl.wallet);
 
         ctrl.amount = 0;
         ctrl.amountForBay = 0;
