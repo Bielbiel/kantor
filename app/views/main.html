@@ -22,11 +22,15 @@
                             Waluta
                         </th>
                         <th>
+                            Kod waluty
+                        </th>
+                        <th>
                             Kupno
                         </th>
                         <th>Sprzedaz</th>
                     </tr>
                     <tr ng-repeat="currency in mainCtrl.arrayCurrency">
+                        <th>{{currency.currency}}</th>
                         <th>{{currency.code}}</th>
                         <th>{{currency.ask}}</th>
                         <th>{{currency.bid}}</th>
@@ -61,9 +65,26 @@
                         <th>CHF</th>
                         <th>{{mainCtrl.wallet.CHF}}</th>
                     </tr>
+
                     <tr>
                         <th>GBP</th>
                         <th>{{mainCtrl.wallet.GBP}}</th>
+                    </tr>
+                    <tr>
+                        <th>AUD</th>
+                        <th>{{mainCtrl.wallet.AUD}}</th>
+                    </tr>
+                    <tr>
+                        <th>CAD</th>
+                        <th>{{mainCtrl.wallet.CAD}}</th>
+                    </tr>
+                    <tr>
+                        <th>HUF</th>
+                        <th>{{mainCtrl.wallet.HUF}}</th>
+                    </tr>
+                    <tr>
+                        <th>XDR</th>
+                        <th>{{mainCtrl.wallet.XDR}}</th>
                     </tr>
                 </table>
             </div>

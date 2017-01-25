@@ -9,7 +9,7 @@
         ctrl.message = 'Trener Cinkciarza';
 
         ctrl.data = {
-            model: null, availableOptions: [{name: 'USD'}, {name: 'EUR'}, {name: 'CHF'}, {name: 'GBP'}]
+            model: null, availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'},{name: 'XDR'} ]
         };
         ctrl.buttonStart = function ()
         {
@@ -18,11 +18,15 @@
             ctrl.wallet.USD = 0;
             ctrl.wallet.CHF = 0;
             ctrl.wallet.GBP = 0;
+            ctrl.wallet.AUD = 0;
+            ctrl.wallet.CAD = 0;
+            ctrl.wallet.HUF = 0;
+            ctrl.wallet.XDR = 0;
         };
 
         $localStorage.$default({
             wallet: {
-                pln: 0, USD: 0, EUR: 0, CHF: 0, GBP: 0
+                pln: 0, USD: 0, EUR: 0, CHF: 0, GBP: 0, AUD: 0, CAD: 0, HUF: 0, XDR: 0
             }
         });
 
@@ -44,7 +48,7 @@
                             if (Math.round(ctrl.wallet.pln * 100) >= Math.round(ctrl.buyInWindow * 100)) {
                                 ctrl.wallet[ctrl.data.model] += ctrl.amountForBay;
                                 ctrl.wallet.pln -= ctrl.money * ctrl.amountForBay;
-                            }else {
+                            } else {
                                 alert('Za malo pieniedzy :(');
 
                             }
