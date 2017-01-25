@@ -4,19 +4,18 @@
             <div class="panel-heading">
                 <div class="col-md-offset-4">
                     <h2 class="nav-start">{{mainCtrl.message}}</h2>
-                    <input type="number" ng-model="mainCtrl.amount" aria-label="amount">
-                    <button ng-click="mainCtrl.wallet.pln = mainCtrl.amount">Nowa kwota startowa</button>
-                    <button ng-click="mainCtrl.wallet.$reset({})">Clear localStorage</button>
+                    <input type="number" min="0" max="10000000" ng-model="mainCtrl.amount" aria-label="amount" name="mainCtrl.amount">
+                    <span ng-show="mainCtrl.amount.$error.min || mainCtrl.amount.$error.max">BUMMMMM</span>
+                    <button ng-click="mainCtrl.buttonStart()">Nowa kwota startowa</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-7">
         <div class="panel panel-default">
             <div class="panel-heading"><h2>Aktualny kurs walut i stan srodkow</h2></div>
             <div class="panel-body">
-
                 <table>
                     <tr>
                         <th>
@@ -26,23 +25,47 @@
                             Kupno
                         </th>
                         <th>Sprzedaz</th>
-                        <th class="oneLine">Posiadana Kwota</th>
-                    </tr>
-                    <tr>
-                        <th>PLN</th>
-                        <th></th>
-                        <th></th>
-                        <th>{{mainCtrl.wallet.pln}}</th>
                     </tr>
                     <tr ng-repeat="currency in mainCtrl.arrayCurrency">
                         <th>{{currency.code}}</th>
                         <th>{{currency.ask}}</th>
                         <th>{{currency.bid}}</th>
-                        <th class="oneLine">--</th>
                     </tr>
                 </table>
+            </div>
+        </div>
+    </div>
 
-
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>Stan srodkow</h2></div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <th>Waluta</th>
+                        <th class="oneLine">Posiadana Kwota</th>
+                    </tr>
+                    <tr>
+                        <th>PLN</th>
+                        <th>{{mainCtrl.wallet.pln | number:2 }}</th>
+                    </tr>
+                    <tr>
+                        <th>USD</th>
+                        <th>{{mainCtrl.wallet.USD}}</th>
+                    </tr>
+                    <tr>
+                        <th>EUR</th>
+                        <th>{{mainCtrl.wallet.EUR}}</th>
+                    </tr>
+                    <tr>
+                        <th>CHF</th>
+                        <th>{{mainCtrl.wallet.CHF}}</th>
+                    </tr>
+                    <tr>
+                        <th>GBP</th>
+                        <th>{{mainCtrl.wallet.GBP}}</th>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -72,12 +95,14 @@
                             <h2>Kup</h2>
                             <div class="tour">
                                 <p>
-                                    <input type="number" ng-model="mainCtrl.amountForBay" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForBay">
+                                    <input type="number" min="0" max="1000000" ng-model="mainCtrl.amountForBay"
+                                           ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForBay">
                                 </p>
                             </div>
                             <div class="input-group body-calc1">
-                                <p>Za <span id="pln11-count">{{mainCtrl.amountForBay}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.buy}}</span> PLN</p>
-                                <button ng-click="mainCtrl.confirmBuy()">Zatwierdz</button>
+                                <p>Za <span id="pln11-count">{{mainCtrl.amountForBay}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.buyInWindow}}</span>
+                                    PLN</p>
+                                <button ng-click="mainCtrl.buy()">Zatwierdz</button>
                             </div>
                         </div>
                     </div>
@@ -90,12 +115,14 @@
                             <h2>Sprzedaj</h2>
                             <div class="tour">
                                 <p>
-                                    <input type="number" ng-model="mainCtrl.amountForSell" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForSell">
+                                    <input type="number" min="0" max="1000000" ng-model="mainCtrl.amountForSell"
+                                           ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForSell">
                                 </p>
                             </div>
                             <div class="input-group body-calc1">
-                                <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.sell}}</span> PLN</p>
-                                <button class="btn btn-default" type="button" id="saveInSell">Zatwierdz</button>
+                                <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.sell}}</span>
+                                    PLN</p>
+                                <button ng-click="mainCtrl.seller()">Zatwierdz</button>
                             </div>
                         </div>
                     </div>
