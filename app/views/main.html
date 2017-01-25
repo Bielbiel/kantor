@@ -5,7 +5,7 @@
                 <div class="col-md-offset-4">
                     <h2 class="nav-start">{{mainCtrl.message}}</h2>
                     <input type="number" ng-model="mainCtrl.amount" aria-label="amount">
-                    <button ng-click="mainCtrl.wallet.pln">Nowa kwota startowa</button>
+                    <button ng-click="mainCtrl.wallet.pln = mainCtrl.amount">Nowa kwota startowa</button>
                     <button ng-click="mainCtrl.wallet.$reset({})">Clear localStorage</button>
                 </div>
             </div>
@@ -66,35 +66,35 @@
 
                     <div class="col-md-6">
                         <div class="col-md-3">
-                            <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money.rates[0].ask}}</span>
+                            <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money}}</span>
                         </div>
                         <div class="input-group col-md-6 col-md-offset-3">
                             <h2>Kup</h2>
                             <div class="tour">
                                 <p>
-                                    <input type="number" id="moneyInInput" value="0">
+                                    <input type="number" ng-model="mainCtrl.amountForBay" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForBay">
                                 </p>
                             </div>
                             <div class="input-group body-calc1">
-                                <p>Za <span id="pln11-count">0</span> Trzeba zapłacić <span id="newWaluteForBuy">0</span> PLN</p>
-                                <button class="btn btn-default" type="button" id="save">Zatwierdz</button>
+                                <p>Za <span id="pln11-count">{{mainCtrl.amountForBay}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.buy}}</span> PLN</p>
+                                <button ng-click="mainCtrl.confirmBuy()">Zatwierdz</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div>
-                            <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.money.rates[0].bid}}</span>
+                            <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.moneyInSell}}</span>
                         </div>
                         <div class="input-group body-calc1 col-md-6">
                             <h2>Sprzedaj</h2>
                             <div class="tour">
                                 <p>
-                                    <input type="number" id="labelInSell" value="0">
+                                    <input type="number" ng-model="mainCtrl.amountForSell" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForSell">
                                 </p>
                             </div>
                             <div class="input-group body-calc1">
-                                <p>Za <span id="plnViewInSell">0</span> Otrzymasz <span id="oldWaluteForBay">0</span> PLN</p>
+                                <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.sell}}</span> PLN</p>
                                 <button class="btn btn-default" type="button" id="saveInSell">Zatwierdz</button>
                             </div>
                         </div>
