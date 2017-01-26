@@ -9,19 +9,24 @@
         ctrl.message = 'Trener Cinkciarza';
 
         ctrl.data = {
-            model: null, availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'},{name: 'XDR'} ]
+            model: 'USD',
+            availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'}, {name: 'XDR'}]
         };
         ctrl.buttonStart = function ()
         {
-            ctrl.wallet.pln = ctrl.amount;
-            ctrl.wallet.EUR = 0;
-            ctrl.wallet.USD = 0;
-            ctrl.wallet.CHF = 0;
-            ctrl.wallet.GBP = 0;
-            ctrl.wallet.AUD = 0;
-            ctrl.wallet.CAD = 0;
-            ctrl.wallet.HUF = 0;
-            ctrl.wallet.XDR = 0;
+            if (ctrl.amount === undefined) {
+                window.alert('Zbyt duza lub zbyt mala kwota startowa');
+            } else {
+                ctrl.wallet.pln = ctrl.amount;
+                ctrl.wallet.EUR = 0;
+                ctrl.wallet.USD = 0;
+                ctrl.wallet.CHF = 0;
+                ctrl.wallet.GBP = 0;
+                ctrl.wallet.AUD = 0;
+                ctrl.wallet.CAD = 0;
+                ctrl.wallet.HUF = 0;
+                ctrl.wallet.XDR = 0;
+            }
         };
 
         $localStorage.$default({
@@ -45,30 +50,33 @@
 
                         ctrl.buy = function ()
                         {
-                            if (Math.round(ctrl.wallet.pln * 100) >= Math.round(ctrl.buyInWindow * 100)) {
+                            if (ctrl.amountForBay === undefined) {
+                                window.alert('Zbyt duza lub zbyt mala kwota startowa');
+                            } else if (Math.round(ctrl.wallet.pln * 100) < Math.round(ctrl.buyInWindow * 100)) {
+                                window.alert('Za malo pieniedzy :(');
+                            } else if (Math.round(ctrl.wallet.pln * 100) >= Math.round(ctrl.buyInWindow * 100)) {
                                 ctrl.wallet[ctrl.data.model] += ctrl.amountForBay;
                                 ctrl.wallet.pln -= ctrl.money * ctrl.amountForBay;
-                            } else {
-                                alert('Za malo pieniedzy :(');
-
                             }
                         };
 
                         ctrl.seller = function ()
                         {
-                            if (Math.round(ctrl.wallet[ctrl.data.model] * 100) >= Math.round(ctrl.amountForSell * 100)) {
+                            if (ctrl.amountForSell === undefined) {
+                                window.alert('Zbyt duza lub zbyt mala kwota startowa');
+                            } else if (Math.round(ctrl.wallet[ctrl.data.model] * 100) >= Math.round(ctrl.amountForSell * 100)) {
                                 ctrl.wallet[ctrl.data.model] -= ctrl.amountForSell;
                                 ctrl.wallet.pln += ctrl.moneyInSell * ctrl.amountForSell;
-                            } else {
-                                alert('Za malo pieniedzy :(');
+                            } else if ((Math.round(ctrl.wallet[ctrl.data.model] * 100) < Math.round(ctrl.amountForSell * 100))) {
+                                window.alert('Za malo pieniedzy :(');
                             }
                         };
                     });
         };
 
-        ctrl.amount = 0;
-        ctrl.amountForBay = 0;
-        ctrl.amountForSell = 0;
+        ctrl.amount = null;
+        ctrl.amountForBay = null;
+        ctrl.amountForSell = null;
 
         ctrl.Currencies = function (value)
         {

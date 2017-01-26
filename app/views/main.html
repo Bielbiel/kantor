@@ -4,9 +4,16 @@
             <div class="panel-heading">
                 <div class="col-md-offset-4">
                     <h2 class="nav-start">{{mainCtrl.message}}</h2>
-                    <input type="number" min="0" max="10000000" ng-model="mainCtrl.amount" aria-label="amount" name="mainCtrl.amount">
-                    <span ng-show="mainCtrl.amount.$error.min || mainCtrl.amount.$error.max">BUMMMMM</span>
-                    <button ng-click="mainCtrl.buttonStart()">Nowa kwota startowa</button>
+                    <form name="formm" novalidate>
+                        <div>
+                            <input type="number" min="1" max="100000000" ng-model="mainCtrl.amount" ng-model-options="size" name="size" aria-label="amount"
+                                   integer/>
+                            <button ng-click="mainCtrl.buttonStart()">Nowa kwota startowa</button>
+                            <br/>
+                            <p ng-show="formm.size.$error.min || formm.size.$error.max">
+                                Podaj wartosc wieksza od 0 a mniejsza od 100 000 000!</p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -107,47 +114,51 @@
                             </select>
                         </form>
                     </div>
-
                     <div class="col-md-6">
-                        <div class="col-md-3">
-                            <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money}}</span>
-                        </div>
                         <div class="input-group col-md-6 col-md-offset-3">
-                            <h2>Kup</h2>
+                            <h2>Kup <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money}}</span>
+                            </h2>
                             <div class="tour">
-                                <p>
-                                    <input type="number" min="0" max="1000000" ng-model="mainCtrl.amountForBay"
-                                           ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForBay">
-                                </p>
+                                <form name="form2" novalidate>
+                                    <div>
+                                        <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForBay"
+                                               ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizese" name="sizese" integer/>
+                                        <button ng-click="mainCtrl.buy()">Zatwierdz</button>
+                                        <br/>
+                                        <p ng-show="form2.sizese.$error.min || form2.sizese.$error.max">
+                                            Podaj wartosc wieksza od 0 a mniejsza od 1 000 000!</p>
+                                    </div>
+                                </form>
                             </div>
                             <div class="input-group body-calc1">
                                 <p>Za <span id="pln11-count">{{mainCtrl.amountForBay}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.buyInWindow}}</span>
                                     PLN</p>
-                                <button ng-click="mainCtrl.buy()">Zatwierdz</button>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-6">
-                        <div>
-                            <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.moneyInSell}}</span>
-                        </div>
                         <div class="input-group body-calc1 col-md-6">
-                            <h2>Sprzedaj</h2>
+                            <h2>Sprzedaj <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.moneyInSell}}</span>
+                            </h2>
                             <div class="tour">
-                                <p>
-                                    <input type="number" min="0" max="1000000" ng-model="mainCtrl.amountForSell"
-                                           ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" aria-label="amountForSell">
-                                </p>
+                                <form name="form" novalidate>
+                                    <div>
+                                        <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForSell"
+                                               ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizes" name="sizes" integer/>
+                                        <button ng-click="mainCtrl.buy()">Zatwierdz</button>
+                                        <br/>
+                                        <p ng-show="form.sizes.$error.min || form.sizes.$error.max">
+                                            Podaj wartosc wieksza od 0 a mniejsza od 1 000 000!</p>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="input-group body-calc1">
+                            <div class="lastMargin">
                                 <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.sell}}</span>
                                     PLN</p>
-                                <button ng-click="mainCtrl.seller()">Zatwierdz</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>git
             </div>
         </div>
     </div>
