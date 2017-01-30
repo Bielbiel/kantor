@@ -7,7 +7,7 @@
     app.directive('integer', function ()
     {
         return {
-            require: 'ngModel-options', link: function (scope, elm, attrs, ctrl)
+            require: 'ngModel-options', link: function (ctrl)
             {
                 ctrl.$validators.integer = function (modelValue, viewValue)
                 {
@@ -15,18 +15,10 @@
 
                         return true;
                     }
-
-                    if (INTEGER_REGEXP.test(viewValue)) {
-
-                        return true;
-                    }
-
-
                     return false;
                 };
             }
         };
     });
-
 })(window.angular);
 

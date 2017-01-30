@@ -21,9 +21,10 @@
 
     <div class="col-md-7">
         <div class="panel panel-default">
-            <div class="panel-heading"><h2>Aktualny kurs walut i stan srodkow</h2></div>
+            <div class="panel-heading"><h2>Aktualny kurs walut</h2></div>
             <div class="panel-body">
                 <table>
+                    <thead>
                     <tr>
                         <th>
                             Waluta
@@ -36,12 +37,15 @@
                         </th>
                         <th>Sprzedaz</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr ng-repeat="currency in mainCtrl.arrayCurrency">
                         <th>{{currency.currency}}</th>
                         <th>{{currency.code}}</th>
                         <th>{{currency.ask}}</th>
                         <th>{{currency.bid}}</th>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -52,22 +56,28 @@
             <div class="panel-heading"><h2>Stan srodkow</h2></div>
             <div class="panel-body">
                 <table>
+                    <thead>
                     <tr>
                         <th>Waluta</th>
                         <th class="oneLine">Posiadana Kwota</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <th>PLN</th>
                         <th>{{mainCtrl.wallet.pln | number:2 }}</th>
                     </tr>
+
                     <tr>
                         <th>USD</th>
                         <th>{{mainCtrl.wallet.USD}}</th>
                     </tr>
+
                     <tr>
                         <th>EUR</th>
                         <th>{{mainCtrl.wallet.EUR}}</th>
                     </tr>
+
                     <tr>
                         <th>CHF</th>
                         <th>{{mainCtrl.wallet.CHF}}</th>
@@ -93,6 +103,7 @@
                         <th>XDR</th>
                         <th>{{mainCtrl.wallet.XDR}}</th>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -145,7 +156,7 @@
                                     <div>
                                         <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForSell"
                                                ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizes" name="sizes" integer/>
-                                        <button ng-click="mainCtrl.buy()">Zatwierdz</button>
+                                        <button ng-click="mainCtrl.sell()">Zatwierdz</button>
                                         <br/>
                                         <p ng-show="form.sizes.$error.min || form.sizes.$error.max">
                                             Podaj wartosc wieksza od 0 a mniejsza od 1 000 000!</p>
@@ -153,12 +164,12 @@
                                 </form>
                             </div>
                             <div class="lastMargin">
-                                <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.sell}}</span>
+                                <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.seller}}</span>
                                     PLN</p>
                             </div>
                         </div>
                     </div>
-                </div>git
+                </div>
             </div>
         </div>
     </div>

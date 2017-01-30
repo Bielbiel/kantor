@@ -9,7 +9,7 @@
         ctrl.message = 'Trener Cinkciarza';
 
         ctrl.data = {
-            model: 'USD',
+            model: null,
             availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'}, {name: 'XDR'}]
         };
         ctrl.buttonStart = function ()
@@ -32,9 +32,10 @@
         $localStorage.$default({
             wallet: {
                 pln: 0, USD: 0, EUR: 0, CHF: 0, GBP: 0, AUD: 0, CAD: 0, HUF: 0, XDR: 0
-            }
-        });
 
+            }
+
+        });
         ctrl.wallet = Wallet.getWallet();
 
         ctrl.getCurrency = function (selectedValue)
@@ -46,24 +47,28 @@
                         ctrl.moneyInSell = result.rates[0].bid;
 
                         ctrl.buyInWindow = parseFloat(ctrl.amountForBay * ctrl.money).toFixed(2);
-                        ctrl.sell = parseFloat(ctrl.amountForSell * ctrl.moneyInSell).toFixed(2);
+                        ctrl.seller = parseFloat(ctrl.amountForSell * ctrl.moneyInSell).toFixed(2);
 
                         ctrl.buy = function ()
                         {
+
+
                             if (ctrl.amountForBay === undefined) {
-                                window.alert('Zbyt duza lub zbyt mala kwota startowa');
+                                window.alert('Zbyt duza lub zbyt mala kwota!');
                             } else if (Math.round(ctrl.wallet.pln * 100) < Math.round(ctrl.buyInWindow * 100)) {
                                 window.alert('Za malo pieniedzy :(');
                             } else if (Math.round(ctrl.wallet.pln * 100) >= Math.round(ctrl.buyInWindow * 100)) {
                                 ctrl.wallet[ctrl.data.model] += ctrl.amountForBay;
                                 ctrl.wallet.pln -= ctrl.money * ctrl.amountForBay;
                             }
+
+
                         };
 
-                        ctrl.seller = function ()
+                        ctrl.sell = function ()
                         {
                             if (ctrl.amountForSell === undefined) {
-                                window.alert('Zbyt duza lub zbyt mala kwota startowa');
+                                window.alert('Zbyt duza lub zbyt mala kwota!');
                             } else if (Math.round(ctrl.wallet[ctrl.data.model] * 100) >= Math.round(ctrl.amountForSell * 100)) {
                                 ctrl.wallet[ctrl.data.model] -= ctrl.amountForSell;
                                 ctrl.wallet.pln += ctrl.moneyInSell * ctrl.amountForSell;
