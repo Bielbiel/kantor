@@ -8,10 +8,21 @@
 
         ctrl.message = 'Trener Cinkciarza';
 
+        ctrl.amount = null;
+        ctrl.amountForBay = null;
+        ctrl.amountForSell = null;
+
+        $localStorage.$default({
+            wallet: {
+                pln: 0, USD: 0, EUR: 0, CHF: 0, GBP: 0, AUD: 0, CAD: 0, HUF: 0, XDR: 0
+            }
+        });
+
         ctrl.data = {
             model: null,
             availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'}, {name: 'XDR'}]
         };
+
         ctrl.buttonStart = function ()
         {
             if (ctrl.amount === undefined) {
@@ -29,13 +40,6 @@
             }
         };
 
-        $localStorage.$default({
-            wallet: {
-                pln: 0, USD: 0, EUR: 0, CHF: 0, GBP: 0, AUD: 0, CAD: 0, HUF: 0, XDR: 0
-
-            }
-
-        });
         ctrl.wallet = Wallet.getWallet();
 
         ctrl.getCurrency = function (selectedValue)
@@ -79,9 +83,6 @@
                     });
         };
 
-        ctrl.amount = null;
-        ctrl.amountForBay = null;
-        ctrl.amountForSell = null;
 
         ctrl.Currencies = function (value)
         {
