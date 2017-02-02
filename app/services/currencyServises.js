@@ -11,9 +11,6 @@
                         .then(function (data)
                         {
                             return data.data;
-                        }).catch(function (err)
-                        {
-                            console.log(err);
                         });
             },
 

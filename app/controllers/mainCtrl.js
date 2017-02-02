@@ -2,7 +2,7 @@
 {
 
     'use strict';
-    function MainController(CurrencyService, $localStorage, Wallet)
+    function MainController(CurrencyService, $localStorage, Wallet, $window)
     {
         var ctrl = this;
 
@@ -11,6 +11,11 @@
         ctrl.amount = null;
         ctrl.amountForBay = null;
         ctrl.amountForSell = null;
+
+        CurrencyService.allCurrencies().then(function (data)
+        {
+            ctrl.arrayCurrency = data[0].rates;
+        });
 
         $localStorage.$default({
             wallet: {
@@ -23,10 +28,12 @@
             availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'}, {name: 'XDR'}]
         };
 
+        ctrl.wallet = Wallet.getWallet();
+
         ctrl.buttonStart = function ()
         {
             if (ctrl.amount === undefined) {
-                window.alert('Zbyt duza lub zbyt mala kwota startowa');
+                $window.alert('Zbyt duza lub zbyt mala kwota startowa');
             } else {
                 ctrl.wallet.pln = ctrl.amount;
                 ctrl.wallet.EUR = 0;
@@ -39,8 +46,6 @@
                 ctrl.wallet.XDR = 0;
             }
         };
-
-        ctrl.wallet = Wallet.getWallet();
 
         ctrl.getCurrency = function (selectedValue)
         {
@@ -55,8 +60,6 @@
 
                         ctrl.buy = function ()
                         {
-
-
                             if (ctrl.amountForBay === undefined) {
                                 window.alert('Zbyt duza lub zbyt mala kwota!');
                             } else if (Math.round(ctrl.wallet.pln * 100) < Math.round(ctrl.buyInWindow * 100)) {
@@ -65,8 +68,6 @@
                                 ctrl.wallet[ctrl.data.model] += ctrl.amountForBay;
                                 ctrl.wallet.pln -= ctrl.money * ctrl.amountForBay;
                             }
-
-
                         };
 
                         ctrl.sell = function ()
@@ -84,19 +85,6 @@
         };
 
 
-        ctrl.Currencies = function (value)
-        {
-            CurrencyService.getCurrency(value).then(function (data)
-            {
-                ctrl[value] = data;
-
-            });
-        };
-
-        CurrencyService.allCurrencies().then(function (data)
-        {
-            ctrl.arrayCurrency = data[0].rates;
-        });
     }
 
     angular.module('cinkciarz')
