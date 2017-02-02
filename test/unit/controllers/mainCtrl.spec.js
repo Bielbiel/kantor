@@ -19,15 +19,15 @@ describe('app.config,js', function ()
         {
             expect(mainCtrl.message).toEqual('Trener Cinkciarza');
         });
-        it('should amount return null', function ()
+        it('should amount be set to null', function ()
         {
             expect(mainCtrl.amount).toEqual(null);
         });
-        it('should amountForBay return null', function ()
+        it('should amountForBay be set to null', function ()
         {
             expect(mainCtrl.amountForBay).toEqual(null);
         });
-        it('should amountForSell return null', function ()
+        it('should amountForSell be set to null', function ()
         {
             expect(mainCtrl.amountForSell).toEqual(null);
         });
