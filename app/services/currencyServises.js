@@ -25,9 +25,7 @@
                             return response.data;
                         });
             }
-
         };
-
     }
 
     angular.module('cinkciarz')

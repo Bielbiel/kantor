@@ -1,5 +1,5 @@
 (function(){
-    "use strict";
+    'use strict';
     angular.module('cinkciarz')
         .service('Wallet', Wallet);
 
@@ -9,5 +9,4 @@
             return $localStorage.wallet;
         };
     }
-
 })();
