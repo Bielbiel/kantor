@@ -6,7 +6,7 @@ describe('app.config,js', function ()
     var mainCtrl;
     beforeEach(module('cinkciarz'));
 
-    beforeEach(inject(function ($controller, CurrencyService, $localStorage, Wallet)
+    beforeEach(inject(function ($controller, CurrencyService, $localStorage)
     {
         storage = $localStorage;
         CurrencyServiceMock = CurrencyService;
@@ -15,7 +15,7 @@ describe('app.config,js', function ()
 
     describe('inicializacion', function ()
     {
-        it('should message return text', function ()
+        it('should message be set to text', function ()
         {
             expect(mainCtrl.message).toEqual('Trener Cinkciarza');
         });
