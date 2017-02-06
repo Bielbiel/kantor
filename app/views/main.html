@@ -10,7 +10,7 @@
                                    integer/>
                             <button ng-click="mainCtrl.buttonStart()">Nowa kwota startowa</button>
                             <br/>
-                            <p ng-show="formm.size.$error.min || formm.size.$error.max">
+                            <p class="comunicatErr" ng-show="formm.size.$error.min || formm.size.$error.max">
                                 Podaj wartosc wieksza od 0 a mniejsza od 100 000 000!</p>
                         </div>
                     </form>
@@ -117,7 +117,7 @@
             </div>
             <div class="panel-body body-calc">
                 <div class="row">
-                    <div>
+                    <div class="col-md-2">
                         <form name="myForm">
                             <label> Wybierz walute:</label>
                             <select class="form-control" ng-model="mainCtrl.data.model" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)">
@@ -125,8 +125,8 @@
                             </select>
                         </form>
                     </div>
-                    <div class="col-md-6">
-                        <div class="input-group col-md-6 col-md-offset-3">
+                    <div class="col-md-5">
+                        <div class="input-group col-md-6 col-md-offset-1">
                             <h2>Kup <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money}}</span>
                             </h2>
                             <div class="tour">
@@ -136,7 +136,7 @@
                                                ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizese" name="sizese" integer/>
                                         <button ng-click="mainCtrl.buy()">Zatwierdz</button>
                                         <br/>
-                                        <p ng-show="form2.sizese.$error.min || form2.sizese.$error.max">
+                                        <p class="comunicatErr" ng-show="form2.sizese.$error.min || form2.sizese.$error.max">
                                             Podaj wartosc wieksza od 0 a mniejsza od 1 000 000!</p>
                                     </div>
                                 </form>
@@ -147,8 +147,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="input-group body-calc1 col-md-6">
+                    <div class="col-md-5">
+                        <div class="input-group body-calc1">
                             <h2>Sprzedaj <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.moneyInSell}}</span>
                             </h2>
                             <div class="tour">
@@ -158,7 +158,7 @@
                                                ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizes" name="sizes" integer/>
                                         <button ng-click="mainCtrl.sell()">Zatwierdz</button>
                                         <br/>
-                                        <p ng-show="form.sizes.$error.min || form.sizes.$error.max">
+                                        <p class="comunicatErr" ng-show="form.sizes.$error.min || form.sizes.$error.max">
                                             Podaj wartosc wieksza od 0 a mniejsza od 1 000 000!</p>
                                     </div>
                                 </form>
