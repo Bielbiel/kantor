@@ -33,7 +33,7 @@ describe('CurrenciesService', function ()
         {
             currenciesService.allCurrencies();
         });
-        it('function allCurrencies should return $http get request with url of selected currency', function ()
+        it('should return $http get request with url of selected currency', function ()
         {
             expect(http.get).toHaveBeenCalledWith('https://api.nbp.pl/api/exchangerates/tables/c/?format=json');
         });

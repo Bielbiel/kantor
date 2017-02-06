@@ -10,13 +10,7 @@ describe('app.config,js', function ()
     beforeEach(inject(function ($controller, CurrencyService, $localStorage, _$window_)
     {
         window = _$window_;
-        // window = {
-        //     alert: function (message)
-        //     {
-        //
-        //     }
-        // };
-        // window = jasmine.createSpy("window", ["alert"]);
+
         storage = $localStorage;
         CurrencyServiceMock = CurrencyService;
 
@@ -46,7 +40,7 @@ describe('app.config,js', function ()
         {
             expect(mainCtrl.amountForSell).toEqual(null);
         });
-        it('should calls allCurrencies function one time', function ()
+        it('should call allCurrencies function one time', function ()
         {
             expect(CurrencyServiceMock.allCurrencies.calls.count()).toBe(1);
         });
