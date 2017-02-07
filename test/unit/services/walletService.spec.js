@@ -1,4 +1,4 @@
-fdescribe('LocalStorageService', function ()
+describe('LocalStorageService', function ()
 {
     'use strict';
     var localService;

@@ -146,7 +146,7 @@
                                 </form>
                             </div>
                             <div class="input-group body-calc1">
-                                <p>Za <span id="pln11-count">{{mainCtrl.amountForBay || 0}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.valueInViewBuy }}</span>
+                                <p ng-show="mainCtrl.amountForBay > 0">Za <span id="pln11-count">{{mainCtrl.amountForBay || 0}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.valueInViewBuy }}</span>
                                     PLN</p>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                                 </form>
                             </div>
                             <div class="lastMargin">
-                                <p>Za <span id="plnViewInSell">{{mainCtrl.amountForSell || 0}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.valueInViewSell}}</span>
+                                <p ng-show="mainCtrl.amountForSell > 0">Za <span id="plnViewInSell">{{mainCtrl.amountForSell || 0}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.valueInViewSell}}</span>
                                     PLN</p>
                             </div>
                         </div>
