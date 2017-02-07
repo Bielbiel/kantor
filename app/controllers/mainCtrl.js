@@ -75,7 +75,7 @@
                             var checksValueForSell = Math.round(ctrl.wallet[ctrl.data.model] * 100) < Math.round(ctrl.amountForSell * 100);
 
                             if (checksValueForSell) {
-                                window.alert('Za malo pieniedzy :(');
+                                window.alert('Za malo pieniedzy  :(');
                             } else {
                                 ctrl.wallet[ctrl.data.model] -= ctrl.amountForSell;
                                 ctrl.wallet.pln += ctrl.moneyInSell * ctrl.amountForSell;
