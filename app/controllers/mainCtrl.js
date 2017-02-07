@@ -24,7 +24,7 @@
         });
 
         ctrl.data = {
-            model: null,
+            model: 'USD',
             availableOptions: [{name: 'USD'}, {name: 'AUD'}, {name: 'CAD'}, {name: 'EUR'}, {name: 'HUF'}, {name: 'CHF'}, {name: 'GBP'}, {name: 'XDR'}]
         };
 
@@ -55,16 +55,16 @@
                         ctrl.money = result.rates[0].ask;
                         ctrl.moneyInSell = result.rates[0].bid;
 
-                        ctrl.buyInWindow = parseFloat(ctrl.amountForBay * ctrl.money).toFixed(2);
-                        ctrl.seller = parseFloat(ctrl.amountForSell * ctrl.moneyInSell).toFixed(2);
+                        ctrl.valueInViewBuy = parseFloat(ctrl.amountForBay * ctrl.money).toFixed(2);
+                        ctrl.valueInViewSell = parseFloat(ctrl.amountForSell * ctrl.moneyInSell).toFixed(2);
 
                         ctrl.buy = function ()
                         {
-                            if (ctrl.amountForBay === undefined) {
-                                window.alert('Zbyt duza lub zbyt mala kwota!');
-                            } else if (Math.round(ctrl.wallet.pln * 100) < Math.round(ctrl.buyInWindow * 100)) {
+                            var checksValueForSell = Math.round(ctrl.wallet.pln * 100) < Math.round(ctrl.valueInViewBuy * 100);
+
+                            if (checksValueForSell) {
                                 window.alert('Za malo pieniedzy :(');
-                            } else if (Math.round(ctrl.wallet.pln * 100) >= Math.round(ctrl.buyInWindow * 100)) {
+                            } else {
                                 ctrl.wallet[ctrl.data.model] += ctrl.amountForBay;
                                 ctrl.wallet.pln -= ctrl.money * ctrl.amountForBay;
                             }
@@ -72,13 +72,13 @@
 
                         ctrl.sell = function ()
                         {
-                            if (ctrl.amountForSell === undefined) {
-                                window.alert('Zbyt duza lub zbyt mala kwota!');
-                            } else if (Math.round(ctrl.wallet[ctrl.data.model] * 100) >= Math.round(ctrl.amountForSell * 100)) {
+                            var checksValueForSell = Math.round(ctrl.wallet[ctrl.data.model] * 100) < Math.round(ctrl.amountForSell * 100);
+
+                            if (checksValueForSell) {
+                                window.alert('Za malo pieniedzy :(');
+                            } else {
                                 ctrl.wallet[ctrl.data.model] -= ctrl.amountForSell;
                                 ctrl.wallet.pln += ctrl.moneyInSell * ctrl.amountForSell;
-                            } else if ((Math.round(ctrl.wallet[ctrl.data.model] * 100) < Math.round(ctrl.amountForSell * 100))) {
-                                window.alert('Za malo pieniedzy :(');
                             }
                         };
                     });
