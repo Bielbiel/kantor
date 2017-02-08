@@ -57,11 +57,11 @@ describe('app.config,js', function ()
         {
             expect(CurrencyServiceMock.allCurrencies.calls.count()).toBe(1);
         });
-        it('should set table of currencies to arrayCurrency variable', function ()
+        it('should message be set to text', function ()
         {
             expect(mainCtrl.arrayCurrency).toBe('actual table of currency');
         });
-        it('should return wallet', function ()
+        it('should return wallet in $localStorage.wallet', function ()
         {
             expect(mainCtrl.wallet).toEqual(storage.wallet);
         });
@@ -70,36 +70,34 @@ describe('app.config,js', function ()
             expect(walletService.getWallet).toHaveBeenCalled();
         });
     });
-    describe('inicializacion localstorage', function ()
+
+    describe('$localStorage inicializacion', function ()
     {
-        describe('initialization', function ()
+        it('should call $localStorage.$default', function ()
         {
-            it('should call $localStorage.$default', function ()
-            {
-                expect(storage.$default).toHaveBeenCalled();
-            });
-            it('should set USD to 0', function ()
-            {
-                expect(storage.wallet.USD).toEqual(0);
-            });
-            it('should set GBP to 0', function ()
-            {
-                expect(storage.wallet.GBP).toEqual(0);
-            });
-            it('should set EUR to 0', function ()
-            {
-                expect(storage.wallet.EUR).toEqual(0);
-            });
-            it('should set CHF to 0', function ()
-            {
-                expect(storage.wallet.CHF).toEqual(0);
-            });
+            expect(storage.$default).toHaveBeenCalled();
+        });
+        it('should set USD to 0', function ()
+        {
+            expect(storage.wallet.USD).toEqual(0);
+        });
+        it('should set GBP to 0', function ()
+        {
+            expect(storage.wallet.GBP).toEqual(0);
+        });
+        it('should set EUR to 0', function ()
+        {
+            expect(storage.wallet.EUR).toEqual(0);
+        });
+        it('should set CHF to 0', function ()
+        {
+            expect(storage.wallet.CHF).toEqual(0);
         });
     });
+
     describe('buttonStart', function ()
     {
-
-        describe('when ctrl.amount is undefined', function ()
+        describe('when amount is undefined', function ()
         {
             beforeEach(function ()
             {
@@ -109,18 +107,18 @@ describe('app.config,js', function ()
 
             });
 
-            it('should check call', function ()
+            it('should call alert ', function ()
             {
                 expect(window.alert).toHaveBeenCalled();
             });
-            it('should return alert message', function ()
+            it('should return alert message "Zbyt duza lub zbyt mala kwota startowa" ', function ()
             {
                 expect(window.alert).toHaveBeenCalledWith('Zbyt duza lub zbyt mala kwota startowa');
             });
 
         });
 
-        describe('when ctrl.amount in defined', function ()
+        describe('when amount is defined', function ()
         {
             beforeEach(function ()
             {
@@ -195,11 +193,11 @@ describe('app.config,js', function ()
                 });
 
 
-                it('should return value for buy in view  ', function ()
+                it('should return a value of currencies on the view for buy', function ()
                 {
                     expect(mainCtrl.valueInViewBuy).toEqual('51.32');
                 });
-                it('should return value for sell in view ', function ()
+                it('should return a value of currencies on the view for sale', function ()
                 {
                     expect(mainCtrl.valueInViewSell).toEqual('50.30');
                 });
@@ -208,7 +206,7 @@ describe('app.config,js', function ()
 
             describe('buy', function ()
             {
-                describe('when wallet is smaller about prize', function ()
+                describe('when you dont have a sufficient amount', function ()
                 {
                     beforeEach(function ()
                     {
@@ -218,16 +216,16 @@ describe('app.config,js', function ()
                         mainCtrl.buy();
                     });
 
-                    it('should check call', function ()
+                    it('should call alert', function ()
                     {
                         expect(window.alert).toHaveBeenCalled();
                     });
-                    it('should return alert message', function ()
+                    it('should return alert message "Za malo pieniedzy :("', function ()
                     {
                         expect(window.alert).toHaveBeenCalledWith('Za malo pieniedzy :(');
                     });
 
-                    describe('when wallet is bigger about prize', function ()
+                    describe('when you have a sufficient amount', function ()
                     {
                         beforeEach(function ()
                         {
@@ -239,7 +237,7 @@ describe('app.config,js', function ()
                         {
                             expect(mainCtrl.wallet.pln).toEqual(48.678999999999995);
                         });
-                        it('should return value after buy in new value', function ()
+                        it('should return new currency after buy', function ()
                         {
                             expect(mainCtrl.wallet[mainCtrl.data.model]).toBe(10);
                         });
@@ -248,7 +246,7 @@ describe('app.config,js', function ()
             });
             describe('sell', function ()
             {
-                describe('when wallet is smaller about prize', function ()
+                describe('when you dont have a sufficient amount', function ()
                 {
                     beforeEach(function ()
                     {
@@ -257,15 +255,15 @@ describe('app.config,js', function ()
                         mainCtrl.amountForSell = 100;
                         mainCtrl.sell();
                     });
-                    it('should check call', function ()
+                    it('should call alert', function ()
                     {
                         expect(window.alert).toHaveBeenCalled();
                     });
-                    it('should return alert message', function ()
+                    it('should return alert message "Za malo pieniedzy :("', function ()
                     {
                         expect(window.alert).toHaveBeenCalledWith('Za malo pieniedzy  :(');
                     });
-                    describe('when wallet is bigger about prize', function ()
+                    describe('when you have a sufficient amount', function ()
                     {
                         beforeEach(function ()
                         {
@@ -277,7 +275,7 @@ describe('app.config,js', function ()
                         {
                             expect(mainCtrl.wallet.pln).toEqual(50.305);
                         });
-                        it('should return value after sell in old value', function ()
+                        it('should return currency after sell', function ()
                         {
                             expect(mainCtrl.wallet[mainCtrl.data.model]).toBe(90);
                         });
