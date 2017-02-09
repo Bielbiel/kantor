@@ -57,11 +57,11 @@ describe('app.config,js', function ()
         {
             expect(CurrencyServiceMock.allCurrencies.calls.count()).toBe(1);
         });
-        it('should message be set to text', function ()
+        it('should set arrayCurrency from data allCurrency', function ()
         {
             expect(mainCtrl.arrayCurrency).toBe('actual table of currency');
         });
-        it('should return wallet in $localStorage.wallet', function ()
+        it('should set wallet to value from $localStorage.wallet', function ()
         {
             expect(mainCtrl.wallet).toEqual(storage.wallet);
         });
@@ -193,11 +193,11 @@ describe('app.config,js', function ()
                 });
 
 
-                it('should return a value of currencies on the view for buy', function ()
+                it('should return a value of currencies on the view for buy approximately 2', function ()
                 {
                     expect(mainCtrl.valueInViewBuy).toEqual('51.32');
                 });
-                it('should return a value of currencies on the view for sale', function ()
+                it('should return a value of currencies on the view for sale approximately 2', function ()
                 {
                     expect(mainCtrl.valueInViewSell).toEqual('50.30');
                 });
