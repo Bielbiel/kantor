@@ -6,14 +6,16 @@
                     <h2 class="nav-start">{{mainCtrl.message}}</h2>
                     <form name="form" novalidate>
                         <div>
-                            <input type="number" min="1" max="100000000" ng-model="mainCtrl.amount"  ng-model-options="size" name="size" aria-label="amount"
-                                   integer/>
-                            <button ng-click="mainCtrl.buttonStart()" class="btn btn-default main_accept" ng-disabled="mainCtrl.amount == 0 || mainCtrl.amount == null">Nowa kwota startowa</button>
+                            <input type="number" min="1" max="100000000" ng-model="mainCtrl.amount" ng-model-options="size" name="size" aria-label="amount"
+                                   id="windowForStartValue" integer/>
+                            <button ng-click="mainCtrl.buttonStart()" class="btn btn-default main_accept acceptStartValue"
+                                    ng-disabled="mainCtrl.amount == 0 || mainCtrl.amount == null">Nowa kwota startowa
+                            </button>
                             <br/>
-                            <p class="comunicatErr" ng-show="form.size.$error.max">
-                                Podaj wartosc mniejsza od 100 000 000!</p>
+                            <p class="comunicatErr" id="errorMessage" ng-show="form.size.$error.max">Podaj wartosc mniejsza od 100 000 000!</p>
                             <p class="comunicatErr" ng-show="form.size.$error.min">
                                 Podaj wartosc wieksza od 0!</p>
+
                         </div>
                     </form>
                 </div>
@@ -67,12 +69,12 @@
                     <tbody>
                     <tr>
                         <th>PLN</th>
-                        <th>{{mainCtrl.wallet.pln | number:2 }}</th>
+                        <th id="valuePln">{{mainCtrl.wallet.pln | number:2 }}</th>
                     </tr>
 
                     <tr>
                         <th>USD</th>
-                        <th>{{mainCtrl.wallet.USD}}</th>
+                        <th id="valueUsd">{{mainCtrl.wallet.USD}}</th>
                     </tr>
 
                     <tr>
@@ -135,8 +137,11 @@
                                 <form name="formForBuy" novalidate>
                                     <div>
                                         <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForBay"
-                                               ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizese" name="sizese" integer/>
-                                        <button ng-click="mainCtrl.buy()" class="btn btn-default main_accept" ng-disabled=" mainCtrl.amountForBay == undefined">Zatwierdz</button>
+                                               ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizese" name="sizese" id="windowForBay"
+                                               integer/>
+                                        <button ng-click="mainCtrl.buy()" id="buttonForBay" class="btn btn-default main_accept" ng-disabled=" mainCtrl.amountForBay == undefined">
+                                            Zatwierdz
+                                        </button>
                                         <br/>
                                         <p class="comunicatErr" ng-show="formForBuy.sizese.$error.min">
                                             Podaj wartosc wieksza od 0!</p>
@@ -146,7 +151,8 @@
                                 </form>
                             </div>
                             <div class="input-group body-calc1">
-                                <p ng-show="mainCtrl.amountForBay > 0">Za <span id="pln11-count">{{mainCtrl.amountForBay || 0}} {{mainCtrl.data.model}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.valueInViewBuy }}</span>
+                                <p ng-show="mainCtrl.amountForBay > 0">Za <span id="pln11-count">{{mainCtrl.amountForBay || 0}} {{mainCtrl.data.model}}</span>
+                                    Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.valueInViewBuy }}</span>
                                     PLN</p>
                             </div>
                         </div>
@@ -158,9 +164,11 @@
                             <div class="tour">
                                 <form name="formForSell" novalidate>
                                     <div>
-                                        <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForSell"
+                                        <input type="number" min="1" max="1000000" id="windowForSell" ng-model="mainCtrl.amountForSell"
                                                ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizes" name="sizes" integer/>
-                                        <button ng-click="mainCtrl.sell()" class="btn btn-default main_accept" ng-disabled="mainCtrl.amountForSell == 0 || mainCtrl.amountForSell == null">Zatwierdz</button>
+                                        <button ng-click="mainCtrl.sell()" class="btn btn-default main_accept" id="buttonForSell"
+                                                ng-disabled="mainCtrl.amountForSell == 0 || mainCtrl.amountForSell == null">Zatwierdz
+                                        </button>
                                         <br/>
                                         <p class="comunicatErr" ng-show="formForSell.sizes.$error.max">
                                             Podaj wartosc mniejsza od 1 000 000!</p>
@@ -170,7 +178,8 @@
                                 </form>
                             </div>
                             <div class="lastMargin">
-                                <p ng-show="mainCtrl.amountForSell > 0">Za <span id="plnViewInSell">{{mainCtrl.amountForSell || 0}} {{mainCtrl.data.model}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.valueInViewSell}}</span>
+                                <p ng-show="mainCtrl.amountForSell > 0">Za <span
+                                        id="plnViewInSell">{{mainCtrl.amountForSell || 0}} {{mainCtrl.data.model}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.valueInViewSell}}</span>
                                     PLN</p>
                             </div>
                         </div>
