@@ -12,8 +12,8 @@
                                     ng-disabled="mainCtrl.amount == 0 || mainCtrl.amount == null">Nowa kwota startowa
                             </button>
                             <br/>
-                            <p class="comunicatErr" id="errorMessage" ng-show="form.size.$error.max">Podaj wartosc mniejsza od 100 000 000!</p>
-                            <p class="comunicatErr" ng-show="form.size.$error.min">
+                            <p class="comunicatErr" id="errorMessageFor0" ng-show="form.size.$error.max">Podaj wartosc mniejsza od 100 000 000!</p>
+                            <p class="comunicatErr" id="errorMessageForMax" ng-show="form.size.$error.min">
                                 Podaj wartosc wieksza od 0!</p>
 
                         </div>
@@ -84,12 +84,12 @@
 
                     <tr>
                         <th>CHF</th>
-                        <th>{{mainCtrl.wallet.CHF}}</th>
+                        <th id="valueChf">{{mainCtrl.wallet.CHF}}</th>
                     </tr>
 
                     <tr>
                         <th>GBP</th>
-                        <th>{{mainCtrl.wallet.GBP}}</th>
+                        <th id="valueGbp">{{mainCtrl.wallet.GBP}}</th>
                     </tr>
                     <tr>
                         <th>AUD</th>
@@ -124,7 +124,7 @@
                     <div class="col-md-2">
                         <form name="myForm">
                             <label> Wybierz walute:</label>
-                            <select class="form-control" ng-model="mainCtrl.data.model" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)">
+                            <select id="select" class="form-control" ng-model="mainCtrl.data.model" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)">
                                 <option ng-repeat="option in mainCtrl.data.availableOptions" value="{{option.name}}">{{option.name}}</option>
                             </select>
                         </form>
@@ -139,13 +139,14 @@
                                         <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForBay"
                                                ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizese" name="sizese" id="windowForBay"
                                                integer/>
-                                        <button ng-click="mainCtrl.buy()" id="buttonForBay" class="btn btn-default main_accept" ng-disabled=" mainCtrl.amountForBay == undefined">
+                                        <button ng-click="mainCtrl.buy()" id="buttonForBay" class="btn btn-default main_accept"
+                                                ng-disabled=" mainCtrl.amountForBay == undefined">
                                             Zatwierdz
                                         </button>
                                         <br/>
-                                        <p class="comunicatErr" ng-show="formForBuy.sizese.$error.min">
+                                        <p class="comunicatErr" id="errorMessageForBay0" ng-show="formForBuy.sizese.$error.min">
                                             Podaj wartosc wieksza od 0!</p>
-                                        <p class="comunicatErr" ng-show="formForBuy.sizese.$error.max">
+                                        <p class="comunicatErr" id="errorMessageForBay" ng-show="formForBuy.sizese.$error.max">
                                             Podaj wartosc mniejsza od 1 000 000!</p>
                                     </div>
                                 </form>
@@ -170,9 +171,9 @@
                                                 ng-disabled="mainCtrl.amountForSell == 0 || mainCtrl.amountForSell == null">Zatwierdz
                                         </button>
                                         <br/>
-                                        <p class="comunicatErr" ng-show="formForSell.sizes.$error.max">
+                                        <p class="comunicatErr" id="errorMessageForSell0" ng-show="formForSell.sizes.$error.max">
                                             Podaj wartosc mniejsza od 1 000 000!</p>
-                                        <p class="comunicatErr" ng-show="formForSell.sizes.$error.min ">
+                                        <p class="comunicatErr" id="errorMessageForSell" ng-show="formForSell.sizes.$error.min ">
                                             Podaj wartosc wieksza od 0!</p>
                                     </div>
                                 </form>

@@ -169,6 +169,34 @@ module.exports = function ()
         browser.switchTo().alert().accept();
         callback();
     });
+    function selectOption(item, input)
+    {
+        var desiredOption = null;
+        return input.all(protractor.By.tagName('option')).getWebElements().then(function (options)
+        {
+            options.some(function (option)
+            {
+                option.getText().then(function (text)
+                {
+                    if (item === text) {
+                        desiredOption = option;
+                        return true;
+                    }
+                    return false;
+                });
+            });
+        }).then(function ()
+        {
+            if (desiredOption) {
+                return desiredOption.click();
+            }
+            return null;
+        });
+    }
 
+    this.When(/I select option "([^"]*)" in "([^"]*)"$/, function (item, input, callback)
+    {
+        selectOption(item, fragments(input)()).then(callback);
+    });
 
 };

@@ -31,8 +31,17 @@ var fragments = function (text)
 
             valuePln: element.bind(null, by.css('#valuePln')),
             valueUsd: element.bind(null, by.css('#valueUsd')),
+            valueChf: element.bind(null, by.css('#valueChf')),
+            valueGbp: element.bind(null, by.css('#valueGbp')),
 
-            errorMessage: element.bind(null, by.css('#errorMessage')),
+            errorMessageFor0: element.bind(null, by.css('#errorMessageFor0')),
+            errorMessageForMax: element.bind(null, by.css('#errorMessageForMax')),
+
+            errorMessageForBay0: element.bind(null, by.css('#errorMessageForBay0')),
+            errorMessageForBay: element.bind(null, by.css('#errorMessageForBay')),
+
+            errorMessageForSell0: element.bind(null, by.css('#errorMessageForSell0')),
+            errorMessageForSell: element.bind(null, by.css('#errorMessageForSell')),
 
             windowForStartValue: element.bind(null, by.css('#windowForStartValue')),
             windowForBay: element.bind(null, by.css('#windowForBay')),
@@ -40,7 +49,9 @@ var fragments = function (text)
 
             acceptStartValue: element.bind(null, by.css('.acceptStartValue')),
             buttonForBay: element.bind(null, by.css('#buttonForBay')),
-            buttonForSell: element.bind(null, by.css('#buttonForSell'))
+            buttonForSell: element.bind(null, by.css('#buttonForSell')),
+
+            select: element.bind(null, by.css('#select'))
 
         }
     };
