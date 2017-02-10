@@ -6,10 +6,6 @@ Feature: Currency exchange buy sell
     And I click "cantor.acceptStartValue"
     Then I should see "100.00" in "cantor.valuePln"
 
-#  Scenario: Enter and approve incorrectly
-#    When I enter "0" into "cantor.windowForStartValue" field
-#    Then I should see \/"Podaj wartosc wieksza od 0!"\/ in "cantor.errorMessage"
-
   Scenario: When I bay currency foreign
     When I enter "1000" into "cantor.windowForStartValue" field
     And I click "cantor.acceptStartValue"
@@ -49,14 +45,4 @@ Feature: Currency exchange buy sell
     And I click "cantor.buttonForSell"
     Then I should see "Za malo pieniedzy  :(" alert
     Then I confirm alert
-
-
-
-
-
-
-
-
-
-
 
