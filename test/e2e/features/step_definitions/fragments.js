@@ -34,13 +34,13 @@ var fragments = function (text)
             valueChf: element.bind(null, by.css('#valueChf')),
             valueGbp: element.bind(null, by.css('#valueGbp')),
 
-            errorMessageFor0: element.bind(null, by.css('#errorMessageFor0')),
+            errorMessageForZero: element.bind(null, by.css('#errorMessageForZero')),
             errorMessageForMax: element.bind(null, by.css('#errorMessageForMax')),
 
-            errorMessageForBay0: element.bind(null, by.css('#errorMessageForBay0')),
+            errorMessageForBayZero: element.bind(null, by.css('#errorMessageForBayZero')),
             errorMessageForBay: element.bind(null, by.css('#errorMessageForBay')),
 
-            errorMessageForSell0: element.bind(null, by.css('#errorMessageForSell0')),
+            errorMessageForSellZero: element.bind(null, by.css('#errorMessageForSellZero')),
             errorMessageForSell: element.bind(null, by.css('#errorMessageForSell')),
 
             windowForStartValue: element.bind(null, by.css('#windowForStartValue')),

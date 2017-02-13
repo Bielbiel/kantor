@@ -92,14 +92,14 @@ Feature: Currency exchange buy sell
   Scenario: Validation for start input
     Then I confirm alert
     When I enter "10" into "cantor.windowForStartValue" field
-    Then I should not see the "cantor.errorMessageFor0" element
+    Then I should not see the "cantor.errorMessageForZero" element
     Then  I should not see the "cantor.errorMessageForMax" element
 
   Scenario: Validation for Bay and Sell input
     When I enter "30" into "cantor.windowForBay" field
-    Then I should not see the "cantor.errorMessageForBay0" element
+    Then I should not see the "cantor.errorMessageForBayZero" element
     Then  I should not see the "cantor.errorMessageForBay" element
 
     When I enter "23" into "cantor.windowForSell" field
-    Then I should not see the "cantor.errorMessageForSell0" element
+    Then I should not see the "cantor.errorMessageForSellZero" element
     Then  I should not see the "cantor.errorMessageForSell" element
