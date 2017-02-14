@@ -1,0 +1,183 @@
+<div class="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-md-offset-4">
+                    <h2 class="nav-start">{{mainCtrl.message}}</h2>
+                    <form name="form" novalidate>
+                        <div>
+                            <input type="number" min="1" max="100000000" ng-model="mainCtrl.amount"  ng-model-options="size" name="size" aria-label="amount"
+                                   integer/>
+                            <button ng-click="mainCtrl.buttonStart()" class="btn btn-default main_accept" ng-disabled="mainCtrl.amount == 0 || mainCtrl.amount == null">Nowa kwota startowa</button>
+                            <br/>
+                            <p class="comunicatErr" ng-show="form.size.$error.max">
+                                Podaj wartosc mniejsza od 100 000 000!</p>
+                            <p class="comunicatErr" ng-show="form.size.$error.min">
+                                Podaj wartosc wieksza od 0!</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>Aktualny kurs walut</h2></div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>
+                            Waluta
+                        </th>
+                        <th>
+                            Kod waluty
+                        </th>
+                        <th>
+                            Kupno
+                        </th>
+                        <th>Sprzedaz</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="currency in mainCtrl.arrayCurrency">
+                        <th>{{currency.currency}}</th>
+                        <th>{{currency.code}}</th>
+                        <th>{{currency.ask}}</th>
+                        <th>{{currency.bid}}</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>Stan srodkow</h2></div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Waluta</th>
+                        <th class="oneLine">Posiadana Kwota</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>PLN</th>
+                        <th>{{mainCtrl.wallet.pln | number:2 }}</th>
+                    </tr>
+
+                    <tr>
+                        <th>USD</th>
+                        <th>{{mainCtrl.wallet.USD}}</th>
+                    </tr>
+
+                    <tr>
+                        <th>EUR</th>
+                        <th>{{mainCtrl.wallet.EUR}}</th>
+                    </tr>
+
+                    <tr>
+                        <th>CHF</th>
+                        <th>{{mainCtrl.wallet.CHF}}</th>
+                    </tr>
+
+                    <tr>
+                        <th>GBP</th>
+                        <th>{{mainCtrl.wallet.GBP}}</th>
+                    </tr>
+                    <tr>
+                        <th>AUD</th>
+                        <th>{{mainCtrl.wallet.AUD}}</th>
+                    </tr>
+                    <tr>
+                        <th>CAD</th>
+                        <th>{{mainCtrl.wallet.CAD}}</th>
+                    </tr>
+                    <tr>
+                        <th>HUF</th>
+                        <th>{{mainCtrl.wallet.HUF}}</th>
+                    </tr>
+                    <tr>
+                        <th>XDR</th>
+                        <th>{{mainCtrl.wallet.XDR}}</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"></div>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>Wymiana Walut</h2>
+            </div>
+            <div class="panel-body body-calc">
+                <div class="row">
+                    <div class="col-md-2">
+                        <form name="myForm">
+                            <label> Wybierz walute:</label>
+                            <select class="form-control" ng-model="mainCtrl.data.model" ng-change="mainCtrl.getCurrency(mainCtrl.data.model)">
+                                <option ng-repeat="option in mainCtrl.data.availableOptions" value="{{option.name}}">{{option.name}}</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group col-md-6 col-md-offset-1">
+                            <h2>Kup <span class="badge" id="newValueForBuy">{{mainCtrl.data.model}} {{mainCtrl.money}}</span>
+                            </h2>
+                            <div class="tour">
+                                <form name="formForBuy" novalidate>
+                                    <div>
+                                        <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForBay"
+                                               ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizese" name="sizese" integer/>
+                                        <button ng-click="mainCtrl.buy()" class="btn btn-default main_accept" ng-disabled=" mainCtrl.amountForBay == undefined">Zatwierdz</button>
+                                        <br/>
+                                        <p class="comunicatErr" ng-show="formForBuy.sizese.$error.min">
+                                            Podaj wartosc wieksza od 0!</p>
+                                        <p class="comunicatErr" ng-show="formForBuy.sizese.$error.max">
+                                            Podaj wartosc mniejsza od 1 000 000!</p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="input-group body-calc1">
+                                <p ng-show="mainCtrl.amountForBay > 0">Za <span id="pln11-count">{{mainCtrl.amountForBay || 0}} {{mainCtrl.data.model}}</span> Trzeba zapłacić <span id="newWaluteForBuy">{{mainCtrl.valueInViewBuy }}</span>
+                                    PLN</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group body-calc1">
+                            <h2>Sprzedaj <span class="badge">{{mainCtrl.data.model}} {{mainCtrl.moneyInSell}}</span>
+                            </h2>
+                            <div class="tour">
+                                <form name="formForSell" novalidate>
+                                    <div>
+                                        <input type="number" min="1" max="1000000" ng-model="mainCtrl.amountForSell"
+                                               ng-change="mainCtrl.getCurrency(mainCtrl.data.model)" ng-model-options="sizes" name="sizes" integer/>
+                                        <button ng-click="mainCtrl.sell()" class="btn btn-default main_accept" ng-disabled="mainCtrl.amountForSell == 0 || mainCtrl.amountForSell == null">Zatwierdz</button>
+                                        <br/>
+                                        <p class="comunicatErr" ng-show="formForSell.sizes.$error.max">
+                                            Podaj wartosc mniejsza od 1 000 000!</p>
+                                        <p class="comunicatErr" ng-show="formForSell.sizes.$error.min ">
+                                            Podaj wartosc wieksza od 0!</p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="lastMargin">
+                                <p ng-show="mainCtrl.amountForSell > 0">Za <span id="plnViewInSell">{{mainCtrl.amountForSell || 0}} {{mainCtrl.data.model}}</span> Otrzymasz <span id="oldWaluteForBay">{{mainCtrl.valueInViewSell}}</span>
+                                    PLN</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
