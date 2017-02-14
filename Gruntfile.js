@@ -61,6 +61,12 @@ module.exports = function (grunt)
                     jshintrc: true
                 }, files: {src: ['app/**/*.js', 'test/**/*.js', '!app/bower_components/**/*.js']}, reporter: 'checkstyle', reporterOutput: 'target/jshint.xml'
             }
+        },
+        'gh-pages': {
+            options: {
+                base: 'app'
+            },
+            src: ['**']
         }
     });
 
